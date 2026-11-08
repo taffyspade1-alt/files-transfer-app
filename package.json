@@ -1,0 +1,15 @@
+{
+  "name": "lan-file-transfer",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Windows 与手机之间的局域网文件传输工具",
+  "main": "server.js",
+  "scripts": {
+    "start": "node --disable-warning=ExperimentalWarning server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "multer": "^2.0.0",
+    "qrcode": "^1.5.4"
+  }
+}

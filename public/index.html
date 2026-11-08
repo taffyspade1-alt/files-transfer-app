@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>文件传输应用 · 电脑端</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="wrap">
+    <header class="top">
+      <h1>文件传输应用</h1>
+      <span class="sub">手机 ⇄ 电脑 互传文件</span>
+      <span class="spacer"></span>
+      <span class="badge" id="sse-badge">实时同步</span>
+      <button class="btn sm" id="btn-logout" type="button">退出房间</button>
+    </header>
+
+    <div class="card connect">
+      <div class="qr">
+        <img id="qr" alt="手机扫码传文件二维码">
+        <div class="muted tiny" style="margin-top:6px">手机扫码传文件</div>
+      </div>
+      <div class="info">
+        <h2>连接信息</h2>
+        <div class="kv">
+          <span class="k">手机访问</span>
+          <span class="v mono" id="lan-url">-</span>
+          <button class="btn sm" id="btn-copy" type="button">复制</button>
+        </div>
+        <div class="kv" id="ip-row" style="display:none">
+          <span class="k">本机网卡</span>
+          <select id="ip-select" class="mono"></select>
+          <span class="muted tiny">扫码不通时切换</span>
+        </div>
+        <div class="kv"><span class="k">房间码</span><span class="v mono" id="room-code">-</span></div>
+        <div class="kv"><span class="k">口令</span><span class="v muted">见启动窗口，或 .env 的 ROOM_PIN</span></div>
+        <div class="kv"><span class="k">文件上限</span><span class="v" id="max-size">-</span></div>
+        <div class="hint blue-hint">
+          电脑 → 手机：点下方「发送文件到手机」选文件上传，手机在页面顶部切到「接收文件」即可查看和下载。
+        </div>
+        <div class="hint" id="net-hint">
+          手机打不开？① 防火墙弹窗勾选「专用网络」并允许 ② 手机与电脑同一 WiFi、路由器关闭「AP 隔离」 ③ 仍不行就让电脑开「移动热点」，手机连该热点。
+        </div>
+      </div>
+    </div>
+
+    <div class="toolbar">
+      <input type="search" class="search" id="search" placeholder="搜索文件名">
+      <button class="btn" id="btn-refresh" type="button">刷新</button>
+      <a class="btn primary" href="/upload" target="_blank" rel="noopener">发送文件到手机</a>
+      <span class="count" id="count">-</span>
+    </div>
+
+    <div class="file-list" id="file-list"></div>
+  </div>
+
+  <div id="viewer">
+    <div class="viewer-bar">
+      <span class="name" id="viewer-name"></span>
+      <a class="btn sm" id="viewer-download" href="#">下载</a>
+      <button class="btn sm" id="viewer-close" type="button">关闭</button>
+    </div>
+    <div class="viewer-body" id="viewer-body"></div>
+  </div>
+
+  <script src="/common.js"></script>
+  <script src="/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>文件传输应用</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body class="mobile">
+  <div class="wrap">
+    <header class="top">
+      <h1>文件传输应用</h1>
+      <span class="spacer"></span>
+      <span class="badge" id="status-badge">连接中</span>
+    </header>
+
+    <div class="tabs">
+      <button class="tab active" id="tab-send" type="button">发送文件</button>
+      <button class="tab" id="tab-receive" type="button">接收文件<span class="dot" id="recv-dot" hidden></span></button>
+    </div>
+
+    <div class="tab-panel" id="panel-send">
+      <div class="pick-box" id="pick-box">
+        <div class="big">点这里选择文件</div>
+        <div class="muted tiny">支持一次选择多个文件，也可直接拖进来</div>
+      </div>
+
+      <div class="pick-grid">
+        <button class="btn" id="btn-photo" type="button">拍照上传</button>
+        <button class="btn" id="btn-files" type="button">选择文件</button>
+      </div>
+
+      <input type="file" id="file-input" multiple hidden>
+      <input type="file" id="photo-input" accept="image/*" capture="environment" hidden>
+
+      <div class="queue" id="queue"></div>
+
+      <div class="progress" id="progress"><div id="progress-bar"></div></div>
+      <div class="status-line" id="status">选择文件后点击上传</div>
+
+      <button class="btn primary" id="btn-upload" type="button" style="width:100%;padding:13px" disabled>开始上传</button>
+
+      <div class="tip">
+        上传的文件会立刻出现在同一房间的所有设备上：手机发、电脑收；电脑发、手机在「接收文件」里收。手机与电脑需连接同一个 WiFi；页面打不开时确认电脑防火墙已放行，或让电脑开「移动热点」后由手机连入。
+      </div>
+    </div>
+
+    <div class="tab-panel" id="panel-receive" hidden>
+      <div class="recv-toolbar">
+        <input type="search" class="search" id="recv-search" placeholder="搜索文件名">
+        <button class="btn sm" id="recv-refresh" type="button">刷新</button>
+      </div>
+      <div class="recv-count" id="recv-count">-</div>
+      <div class="file-list" id="recv-list"></div>
+      <div class="tip">
+        电脑端点「发送文件到手机」上传后，文件会自动出现在这里。点「下载」存到手机，点「预览」在浏览器里直接打开；图片、视频、PDF、文本支持在线预览。
+      </div>
+    </div>
+  </div>
+
+  <script src="/common.js"></script>
+  <script src="/upload.js"></script>
+  <script src="/receive.js"></script>
+</body>
+</html>
